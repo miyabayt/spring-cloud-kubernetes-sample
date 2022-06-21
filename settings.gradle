@@ -1,0 +1,13 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+include "base"
+include "eventstore"
+include "gateway-service"
+include "hello-service"
+include "bank-service"

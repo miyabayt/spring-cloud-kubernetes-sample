@@ -1,0 +1,9 @@
+metadata:
+  name: eventstore
+roleRef:
+  kind: Role
+  name: eventstore
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: ServiceAccount
+    name: eventstore

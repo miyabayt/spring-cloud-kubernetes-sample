@@ -1,0 +1,9 @@
+metadata:
+  name: hello-service
+roleRef:
+  kind: Role
+  name: hello-service
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: ServiceAccount
+    name: hello-service

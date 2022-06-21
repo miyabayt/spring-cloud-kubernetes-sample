@@ -1,0 +1,19 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    default: local
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,metrics,refresh,gateway
+  health:
+    db:
+      enabled: false
+    mail:
+      enabled: false
+springdoc:
+  swagger-ui:
+    disable-swagger-default-url: true
+    use-root-path: true

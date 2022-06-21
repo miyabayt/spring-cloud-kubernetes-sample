@@ -1,0 +1,44 @@
+server:
+  forward-headers-strategy: framework
+  port: 8080
+spring:
+  profiles:
+    default: local
+  cloud:
+    stream:
+      kafka:
+        binder:
+          applicationId: ${spring.application.name}
+          configuration:
+            auto.offset.reset: latest
+            isolation.level: read_committed
+            key.serializer: org.apache.kafka.common.serialization.UUIDSerializer
+            #value.serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+            key.deserializer: org.apache.kafka.common.serialization.UUIDDeserializer
+            #value.deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+  messages:
+    basename: messages,ValidationMessages
+    encoding: UTF-8
+  jackson:
+    mapper:
+      default-view-inclusion: true
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,metrics,refresh
+  health:
+    db:
+      enabled: false
+    mail:
+      enabled: false
+springdoc:
+  swagger-ui:
+    enabled: false
+  packagesToScan: com.bigtreetc.sample.eventstore
+
+eventsourcing:
+  messaging:
+    eventTopicName: events

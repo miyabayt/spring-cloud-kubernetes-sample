@@ -1,0 +1,9 @@
+metadata:
+  name: gateway-service
+roleRef:
+  kind: Role
+  name: gateway-service
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: ServiceAccount
+    name: gateway-service

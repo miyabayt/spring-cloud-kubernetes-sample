@@ -1,0 +1,12 @@
+spec:
+  template:
+    spec:
+      serviceAccount: eventstore
+      containers:
+        - env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: k8s
+          - name: SPRING_R2DBC_USERNAME
+            value: root
+          - name: SPRING_R2DBC_PASSWORD
+            value: passw0rd

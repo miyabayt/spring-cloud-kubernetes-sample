@@ -1,0 +1,80 @@
+server:
+  forward-headers-strategy: framework
+  port: 8080
+spring:
+  profiles:
+    default: local
+  cloud:
+    function:
+      definition: commandReceiver;queryReceiver;eventReceiver;sagaEventReceiver
+    stream:
+      bindings:
+        commandReceiver-in-0:
+          destination: ${eventsourcing.messaging.commandTopicName}
+          group: ${spring.application.name}
+        queryReceiver-in-0:
+          destination: ${eventsourcing.messaging.queryTopicName}
+          group: ${spring.application.name}
+        eventReceiver-in-0:
+          destination: ${eventsourcing.messaging.eventTopicName}
+          group: ${spring.application.name}
+        sagaEventReceiver-in-0:
+          destination: ${eventsourcing.messaging.sagaEventTopicName}
+          group: ${spring.application.name}
+      kafka:
+        binder:
+          applicationId: ${spring.application.name}
+          configuration:
+            auto.offset.reset: latest
+            isolation.level: read_committed
+            key.serializer: org.apache.kafka.common.serialization.UUIDSerializer
+            #value.serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+            key.deserializer: org.apache.kafka.common.serialization.UUIDDeserializer
+            #value.deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+        streams:
+          binder:
+            functions:
+              commandReceiver:
+                applicationId: ${spring.application.name}-commandReceiver
+              queryReceiver:
+                applicationId: ${spring.application.name}-queryReceiver
+              eventReceiver:
+                applicationId: ${spring.application.name}-eventReceiver
+              sagaEventReceiver:
+                applicationId: ${spring.application.name}-sagaEventReceiver
+            configuration:
+              application.server: localhost:${server.port} # for InteractiveQueryService to describe itself
+              state.dir: ${java.io.tmpdir}/kafka-streams-${server.port}
+              default.key.serde: org.apache.kafka.common.serialization.Serdes$UUIDSerde
+              #default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
+              default.value.serde: org.apache.kafka.common.serialization.Serdes$ByteArraySerde
+              commit.interval.ms: 1000
+  messages:
+    basename: messages,ValidationMessages
+    encoding: UTF-8
+  jackson:
+    mapper:
+      default-view-inclusion: true
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,metrics,refresh
+  health:
+    db:
+      enabled: false
+    mail:
+      enabled: false
+springdoc:
+  swagger-ui:
+    enabled: false
+  packagesToScan: com.bigtreetc.sample.bank
+
+eventsourcing:
+  messaging:
+    commandTopicName: commands
+    queryTopicName: queries
+    eventTopicName: events
+    sagaEventTopicName: sagas

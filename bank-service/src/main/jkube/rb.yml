@@ -1,0 +1,9 @@
+metadata:
+  name: bank-service
+roleRef:
+  kind: Role
+  name: bank-service
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: ServiceAccount
+    name: bank-service

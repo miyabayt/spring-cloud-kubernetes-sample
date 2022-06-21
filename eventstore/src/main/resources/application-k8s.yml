@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: k8s
+  r2dbc:
+    url: r2dbc:pool:mysql://mysql:3306/eventstore?allowPublicKeyRetrieval=true&useSSL=false
+  flyway:
+    schemas: eventstore
+    url: jdbc:mysql://mysql:3306/?allowPublicKeyRetrieval=true&useSSL=false
+    user: ${spring.r2dbc.username}
+    password: ${spring.r2dbc.password}
+    baseline-on-migrate: true
+    placeholder-replacement: false
+logging:
+  level:
+    org.springframework.r2dbc: INFO

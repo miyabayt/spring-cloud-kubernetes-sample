@@ -1,0 +1,40 @@
+plugins {
+    id "org.springframework.boot" version "${springBootVersion}"
+    id "io.spring.dependency-management" version "${dependencyManagementVersion}"
+    id "org.eclipse.jkube.kubernetes" version "${jkubeVersion}"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+dependencies {
+    implementation project(":base")
+
+    implementation "org.springframework.boot:spring-boot-starter-validation"
+    implementation "org.springframework.boot:spring-boot-starter-webflux"
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation "org.springframework.boot:spring-boot-starter-data-r2dbc"
+    implementation "org.springframework.cloud:spring-cloud-starter-kubernetes-client-all"
+    implementation "org.springframework.cloud:spring-cloud-starter-sleuth"
+    implementation "org.springframework.cloud:spring-cloud-starter-stream-kafka"
+    implementation "org.springframework.cloud:spring-cloud-stream-binder-kafka-streams"
+    implementation "org.springdoc:springdoc-openapi-webflux-ui:${springdocVersion}"
+
+    implementation "org.flywaydb:flyway-core"
+    runtimeOnly "dev.miku:r2dbc-mysql"
+    runtimeOnly "mysql:mysql-connector-java"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.spockframework:spock-spring:${spockVersion}"
+    testImplementation "org.springframework.boot:spring-boot-starter-data-r2dbc"
+    testImplementation "com.h2database:h2"
+    testImplementation "io.r2dbc:r2dbc-h2"
+    developmentOnly "org.springframework.boot:spring-boot-devtools"
+}
+
+k8sBuild.dependsOn "build"
+k8sResource.dependsOn "k8sBuild"
+k8sApply.dependsOn "k8sResource"

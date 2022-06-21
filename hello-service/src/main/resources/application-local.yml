@@ -1,0 +1,9 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+  cloud:
+    kubernetes:
+      enabled: false
+  messages:
+    cache-duration: -1

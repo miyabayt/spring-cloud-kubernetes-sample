@@ -1,0 +1,20 @@
+server:
+  forward-headers-strategy: framework
+  port: 8080
+spring:
+  profiles:
+    default: local
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,metrics,refresh
+  health:
+    db:
+      enabled: false
+    mail:
+      enabled: false
+springdoc:
+  swagger-ui:
+    enabled: false
+  packagesToScan: com.bigtreetc.sample.hello

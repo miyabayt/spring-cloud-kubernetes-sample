@@ -1,0 +1,6 @@
+metadata:
+  name: hello-service
+rules:
+  - apiGroups: [""] # "" indicates the core API group
+    resources: ["configmaps", "pods", "services", "endpoints", "secrets"]
+    verbs: ["get", "list", "watch"]
