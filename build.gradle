@@ -54,7 +54,7 @@ allprojects {
     [compileJava, compileTestJava, compileGroovy, compileTestGroovy]*.options*.compilerArgs = ["--enable-preview", "-Xlint:all"]
 
     ext {
-        springCloudVersion = "2021.0.3"
+        springCloudVersion = "2021.0.4"
         springCloudAwsVersion = "2.3.4"
         awsJavaSDKVersion = "1.12.132"
         springdocVersion = "1.6.11"
