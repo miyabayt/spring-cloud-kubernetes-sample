@@ -58,7 +58,7 @@ allprojects {
         springCloudAwsVersion = "2.3.4"
         awsJavaSDKVersion = "1.12.132"
         springdocVersion = "1.6.11"
-        spockVersion = "2.1-groovy-3.0"
+        spockVersion = "2.3-groovy-4.0"
     }
 
     dependencies {
