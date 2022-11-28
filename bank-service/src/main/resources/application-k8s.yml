@@ -7,9 +7,11 @@ spring:
       kafka.binder:
         brokers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
   r2dbc:
-    url: r2dbc:pool:mysql://mysql/eventstore?allowPublicKeyRetrieval=true&useSSL=false
+    url: r2dbc:pool:mysql://mysql/bank-service?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: passw0rd
   flyway:
-    schemas: eventstore
+    schemas: bank-service
     url: jdbc:mysql://mysql/?allowPublicKeyRetrieval=true&useSSL=false
     user: ${spring.r2dbc.username}
     password: ${spring.r2dbc.password}
@@ -17,4 +19,11 @@ spring:
     placeholder-replacement: false
 logging:
   level:
-    org.springframework.r2dbc: INFO
+    org.springframework.r2dbc: DEBUG
+    org.springframework.cloud.stream.binder: WARN
+    org.apache.kafka: WARN
+    com.bigtreetc.sample: DEBUG
+
+eventsourcing:
+  eventstore:
+    baseUrl: http://eventstore:8080
