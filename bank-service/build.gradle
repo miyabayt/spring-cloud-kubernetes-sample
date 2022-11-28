@@ -36,7 +36,7 @@ dependencies {
     testImplementation "io.r2dbc:r2dbc-h2"
     developmentOnly "org.springframework.boot:spring-boot-devtools"
 
-    implementation 'io.zipkin.brave:brave-instrumentation-kafka-clients:5.13.11'
+    implementation "io.zipkin.brave:brave-instrumentation-kafka-clients:5.13.11"
 }
 
 k8sBuild.dependsOn "build"

@@ -4,6 +4,8 @@ spec:
       serviceAccount: bank-service
       containers:
         - env:
+          - name: JAVA_TOOL_OPTIONS
+            value: --enable-preview
           - name: SPRING_PROFILES_ACTIVE
             value: k8s
           - name: SPRING_R2DBC_USERNAME
