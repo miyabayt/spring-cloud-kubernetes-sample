@@ -21,8 +21,7 @@ public class DefaultQueryBus implements QueryBus {
   public Mono<Boolean> send(QueryMessage queryMessage) {
     val id = queryMessage.getId();
     val payloadType = queryMessage.getPayloadType();
-    val message =
-        MessageBuilder.withPayload(queryMessage).setHeader(KafkaHeaders.MESSAGE_KEY, id).build();
+    val message = MessageBuilder.withPayload(queryMessage).setHeader(KafkaHeaders.KEY, id).build();
     log.info("sending query message: [id={}, type={}]", id, payloadType);
     return Mono.fromCallable(() -> streamBridge.send(topic, message))
         .doOnSuccess(done -> log.info("query message sent: [id={}, type={}]", id, payloadType));

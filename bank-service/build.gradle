@@ -1,8 +1,6 @@
-plugins {
-    id "org.springframework.boot" version "${springBootVersion}"
-    id "io.spring.dependency-management" version "${dependencyManagementVersion}"
-    id "org.eclipse.jkube.kubernetes" version "${jkubeVersion}"
-}
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+apply plugin: "org.eclipse.jkube.kubernetes"
 
 dependencyManagement {
     imports {
@@ -18,19 +16,21 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-starter-data-r2dbc"
     implementation "org.springframework.cloud:spring-cloud-starter-kubernetes-client-all"
-    implementation "org.springframework.cloud:spring-cloud-starter-sleuth"
     implementation "org.springframework.cloud:spring-cloud-starter-stream-kafka"
     implementation "org.springframework.cloud:spring-cloud-stream-binder-kafka-streams"
     implementation "io.projectreactor.addons:reactor-extra"
     implementation "org.springdoc:springdoc-openapi-webflux-ui:${springdocVersion}"
 
     implementation "org.flywaydb:flyway-core"
-    runtimeOnly "dev.miku:r2dbc-mysql"
-    runtimeOnly "mysql:mysql-connector-java"
+    runtimeOnly "io.asyncer:r2dbc-mysql:1.0.1"
+    runtimeOnly "com.mysql:mysql-connector-j"
+
+    implementation "io.micrometer:micrometer-registry-prometheus"
+    implementation "io.micrometer:micrometer-tracing-bridge-otel"
+    implementation "io.opentelemetry:opentelemetry-exporter-zipkin"
 
     testImplementation "org.springframework.cloud:spring-cloud-stream-test-support"
     testImplementation "org.springframework.boot:spring-boot-starter-test"
-    testImplementation "org.spockframework:spock-spring:${spockVersion}"
     testImplementation "org.springframework.boot:spring-boot-starter-data-r2dbc"
     testImplementation "com.h2database:h2"
     testImplementation "io.r2dbc:r2dbc-h2"

@@ -3,6 +3,8 @@ plugins {
     id "groovy"
     id "idea"
     id "eclipse"
+    id "org.springframework.boot" version "${springBootVersion}" apply false
+    id "org.eclipse.jkube.kubernetes" version "${jkubeVersion}" apply false
     id "com.diffplug.spotless" version "${spotlessVersion}"
 }
 
@@ -58,7 +60,6 @@ allprojects {
         springCloudAwsVersion = "2.3.4"
         awsJavaSDKVersion = "1.12.132"
         springdocVersion = "1.6.11"
-        spockVersion = "2.1-groovy-3.0"
     }
 
     dependencies {
@@ -68,9 +69,6 @@ allprojects {
         testAnnotationProcessor "org.projectlombok:lombok"
 
         testImplementation "org.assertj:assertj-core"
-        testImplementation "org.codehaus.groovy:groovy"
-        testImplementation platform("org.spockframework:spock-bom:${spockVersion}")
-        testImplementation "org.spockframework:spock-core"
         testImplementation "org.mockito:mockito-core"
     }
 

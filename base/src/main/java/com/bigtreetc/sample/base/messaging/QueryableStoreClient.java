@@ -1,7 +1,7 @@
 package com.bigtreetc.sample.base.messaging;
 
+import jakarta.annotation.PostConstruct;
 import java.util.UUID;
-import javax.annotation.PostConstruct;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

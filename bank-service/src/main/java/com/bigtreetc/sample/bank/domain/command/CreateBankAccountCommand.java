@@ -1,11 +1,11 @@
 package com.bigtreetc.sample.bank.domain.command;
 
 import com.bigtreetc.sample.base.messaging.command.Command;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import java.io.Serial;
 import java.math.BigDecimal;
 import java.util.UUID;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;

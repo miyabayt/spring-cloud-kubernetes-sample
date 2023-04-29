@@ -22,7 +22,7 @@ public class DefaultCommandBus implements CommandBus {
     val id = commandMessage.getId();
     val payloadType = commandMessage.getPayloadType();
     val message =
-        MessageBuilder.withPayload(commandMessage).setHeader(KafkaHeaders.MESSAGE_KEY, id).build();
+        MessageBuilder.withPayload(commandMessage).setHeader(KafkaHeaders.KEY, id).build();
     log.info("sending command message: [id={}, type={}]", id, payloadType);
     return Mono.fromCallable(() -> streamBridge.send(topic, message))
         .doOnSuccess(done -> log.info("command message sent: [id={}, type={}]", id, payloadType));

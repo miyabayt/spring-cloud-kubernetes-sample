@@ -1,7 +1,7 @@
 package com.bigtreetc.sample.bank.controller;
 
+import jakarta.validation.constraints.Min;
 import java.math.BigDecimal;
-import javax.validation.constraints.Min;
 import lombok.*;
 
 @Getter
