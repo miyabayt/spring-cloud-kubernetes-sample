@@ -59,7 +59,7 @@ allprojects {
         springCloudVersion = "2022.0.2"
         springCloudAwsVersion = "2.3.4"
         awsJavaSDKVersion = "1.12.132"
-        springdocVersion = "1.6.11"
+        springdocVersion = "1.6.15"
     }
 
     dependencies {
