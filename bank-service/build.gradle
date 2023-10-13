@@ -22,7 +22,7 @@ dependencies {
     implementation "org.springdoc:springdoc-openapi-webflux-ui:${springdocVersion}"
 
     implementation "org.flywaydb:flyway-core"
-    runtimeOnly "io.asyncer:r2dbc-mysql:1.0.4"
+    runtimeOnly "io.asyncer:r2dbc-mysql:1.0.5"
     runtimeOnly "com.mysql:mysql-connector-j"
 
     implementation "io.micrometer:micrometer-registry-prometheus"
